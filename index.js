@@ -20,17 +20,21 @@ async function deploy() {
   console.log(chalk.red(`Deploying to ${env} environment with AWS Profile ${awsProfile} \n`));
   
   let command = `serverless deploy --stage ${env.toLowerCase()} --aws-profile ${awsProfile} -v`
+
+  let versionCommand = `npm version ${version.toLowerCase()}`
   
-  let gitAddCommand = `git add .`
-  let gitCommitCommand = `git commit -m "${gitComment}"`
-  let gitPushCommand = `git push origin ${gitBranch}`
+  // let gitAddCommand = `git add .`
+  // let gitCommitCommand = `git commit -m "${gitComment}"`
+  // let gitPushCommand = `git push origin ${gitBranch}`
 
   
   shell.exec(command)
-  shell.exec(gitAddCommand)
-  shell.exec(gitCommitCommand)
-  shell.exec(gitPushCommand)
-  process.exit(0); 
+  shell.exec(versionCommand)
+  shell.exec(`git add .`)
+  shell.exec(`git commit -m "${gitComment}"`)
+  shell.exec(`git push origin ${gitBranch}`)
+  process.exit(0);
+
 }
 
 async function askEnv() {

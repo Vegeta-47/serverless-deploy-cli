@@ -4,7 +4,8 @@
   "description": "A CLI for deploying serverless functions",
   "type": "module",
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/Vegeta-47/serverless-deploy-cli.git"
   },
   "main": "index.js",
   "scripts": {
@@ -16,5 +17,6 @@
     "gradient-string": "^2.0.0",
     "inquirer": "^8.2.0",
     "shelljs": "^0.8.5"
-  }
+  },
+  "author": "Akash Upadhyay"
 }
