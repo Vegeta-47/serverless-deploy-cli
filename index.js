@@ -7,6 +7,7 @@ import shell from 'shelljs'
 
 let playerName;
 let env;
+let version
 let awsProfile;
 let pushToGit;
 let gitBranch;
@@ -25,7 +26,7 @@ async function deploy() {
   let gitPushCommand = `git push origin ${gitBranch}`
 
   
-  // shell.exec(command)
+  shell.exec(command)
   shell.exec(gitAddCommand)
   shell.exec(gitCommitCommand)
   shell.exec(gitPushCommand)
@@ -46,6 +47,22 @@ async function askEnv() {
   });
 
   env = answers.selectEnvironment;
+
+}
+
+async function askVersion() {
+  const answers = await inquirer.prompt({
+    name: 'version',
+    type: 'list',
+    message: 'Select Version\n',
+    choices: [
+      'Patch',
+      'Minor',
+      'Major'
+    ],
+  });
+
+  version = answers.version;
 
 }
 
@@ -99,6 +116,7 @@ async function askGitComment() {
 console.clear();
 await welcome();
 await askEnv();
+await askVersion();
 await askAwsProfile();
 await askPushToGit();
 if (pushToGit) {
