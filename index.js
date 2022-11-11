@@ -20,14 +20,16 @@ async function deploy() {
   
   let command = `serverless deploy --stage ${env.toLowerCase()} --aws-profile ${awsProfile} -v`
   
-  let gitCommand = `git add .
-  git commit -m ${gitComment}
-  git push origin ${gitBranch}
-  `
+  let gitAddCommand = `git add .`
+  let gitCommitCommand = `git commit -m "${gitComment}"`
+  let gitPushCommand = `git push origin ${gitBranch}`
+
   
-  shell.exec(command)
-  shell.exec(gitCommand)
-  process.exit(0);
+  // shell.exec(command)
+  shell.exec(gitAddCommand)
+  shell.exec(gitCommitCommand)
+  shell.exec(gitPushCommand)
+  process.exit(0); 
 }
 
 async function askEnv() {
